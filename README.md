@@ -30,7 +30,7 @@ class MyWidget extends StatelessWidget {
         decoration: BoxDecoration(
             image: const DecorationImage(
                 image: NetworkImage(
-                    'https://i.scdn.co/image/ab67616d0000b273c5b7abcf79c264a9da1baab8')),
+                    'https://i.scdn.co/image/ab6761610000e5ebd7c3b199f260dd0eef79f54c')),
             borderRadius: BorderRadius.circular(40)),
         width: 500,
         height: 500,
@@ -54,7 +54,7 @@ class MyWidget extends StatelessWidget {
           ]),
           const SizedBox(height: 140),
           const Text(
-              'ELDEN RING, developed by FromSoftware, is a set fantasy action RPG adventure. ',
+              'MC HARIEL, ALBÚM O MUNDO GIROU, COMPOSIÇÕES MUSICAIS. ',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
           const SizedBox(height: 20),
           Row(children: [
@@ -92,7 +92,7 @@ class MyWidget extends StatelessWidget {
                   color: Colors.white,
                   size: 3.0,
                 ),
-                Text('1,2k Upvote',
+                Text('54 Upvote',
                     style: TextStyle(
                       fontSize: 15,
                     ))

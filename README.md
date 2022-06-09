@@ -1,7 +1,6 @@
 # 2BIM-ATV_1
 import 'package:flutter/material.dart';
 
-const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 void main() {
   runApp(MyApp());
 }
@@ -10,93 +9,250 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: darkBlue,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: MyWidget(),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+  String? dropDownValue;
+  List<String> cityList = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  void initState() {
+    //setFilters();
+    super.initState();
+  }
+
+  setFilters() {
+    setState(() {
+      dropDownValue = cityList[2];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                width: 250,
+                height: 30,
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(
+                        const Radius.circular(25.0),
+                      ),
+                    ),
+                    filled: true,
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                    hintText: "Visão Geral - Mensal",
+                    contentPadding: new EdgeInsets.fromLTRB(50, 5, 5, 5),
+                    fillColor: Colors.blue[900],
+                  ),
+                  value: dropDownValue,
+                  onChanged: (String? Value) {
+                    setState(() {
+                      dropDownValue = Value!;
+                    });
+                  },
+                  items: cityList
+                      .map((cityTitle) => DropdownMenuItem(
+                          value: cityTitle,
+                          child: Text(
+                            "$cityTitle",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 5, 5, 5),
+                            ),
+                          )))
+                      .toList(),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Icon(Icons.circle,
+                  color: Color.fromARGB(255, 38, 255, 0), size: 30),
+              Column(children: const [
+                Text('ECONOMIA',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 38, 255, 0))),
+                Text('RS 300,00',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 38, 255, 0))),
+              ]),
+              Icon(Icons.circle,
+                  color: Color.fromARGB(255, 255, 0, 0), size: 30),
+              Column(children: const [
+                Text('DESPESAS',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 255, 0, 0))),
+                Text('RS 100,00',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 255, 0, 0))),
+              ]),
+            ]),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Container(
+                  color: Colors.blue[900],
+                  width: 360,
+                  height: 30,
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Text(
+                      'Despesas por categoria',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://cdn-icons-png.flaticon.com/512/1170/1170601.png')),
+                    ),
+                  ),
+                  Column(children: [
+                    Row(
+                      children: [
+                        Icon(Icons.circle,
+                            color: Color.fromARGB(255, 38, 255, 0), size: 20),
+                        Text('ECONOMIA',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                        Text('RS 300,00',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.circle,
+                            color: Color.fromARGB(255, 255, 0, 0), size: 20),
+                        Text('DESPESAS',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 255, 0, 0))),
+                        Text('RS 100,00',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 255, 0, 0))),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.circle,
+                            color: Color.fromARGB(255, 38, 255, 0), size: 20),
+                        Text('ECONOMIA',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                        Text('RS 300,00',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.circle,
+                            color: Color.fromARGB(255, 38, 255, 0), size: 20),
+                        Text('ECONOMIA',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                        Text('RS 300,00',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 38, 255, 0))),
+                      ],
+                    ),
+                  ]),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class MyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-            image: const DecorationImage(
-                image: NetworkImage(
-                    'https://i.scdn.co/image/ab6761610000e5ebd7c3b199f260dd0eef79f54c')),
-            borderRadius: BorderRadius.circular(40)),
-        width: 500,
-        height: 500,
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.all(10),
-        child: Column(children: [
-          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: const Icon(
-                Icons.bookmark_border,
-                color: Colors.white,
-                size: 25.0,
-              ),
-            )
-          ]),
-          const SizedBox(height: 140),
-          const Text(
-              'MC HARIEL, ALBÚM O MUNDO GIROU, COMPOSIÇÕES MUSICAIS. ',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 20),
-          Row(children: [
-            Icon(Icons.circle, color: Colors.white, size: 40),
-            Column(children: const [
-              Text('BRA', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('     TODAY', style: TextStyle(fontWeight: FontWeight.bold)),
-            ]),
-            const SizedBox(width: 310),
-            const Text('4h ago',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                )),
-          ]),
-          const SizedBox(height: 20),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Text('Alef Barbosa',
-                    style: TextStyle(
-                      fontSize: 15,
-                    )),
-                Icon(
-                  Icons.circle,
-                  color: Colors.white,
-                  size: 3.0,
-                ),
-                Text('5 min Reads',
-                    style: TextStyle(
-                      fontSize: 15,
-                    )),
-                Icon(
-                  Icons.circle,
-                  color: Colors.white,
-                  size: 3.0,
-                ),
-                Text('54 Upvote',
-                    style: TextStyle(
-                      fontSize: 15,
-                    ))
-              ])
-        ]));
-  }
-}
